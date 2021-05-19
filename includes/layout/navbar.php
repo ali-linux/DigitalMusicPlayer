@@ -1,3 +1,10 @@
+<?php  
+if(isset($_SESSION['userLoggedIn'])){
+	$userLoggedIn = $_SESSION['userLoggedIn'];
+} else {
+	header('Location registration.php');
+}
+?>
 <div id="navBarContainer">
 		<nav class="navBar">
 
@@ -26,7 +33,10 @@
 				</div>
 
 				<div class="navItem">
-				<span role="link" tabindex="0" onclick="openPage('profile.php')" class="navItemLink">Reece Kenney</span>
+				<span role="link" tabindex="0" onclick="openPage('settings.php')" class="navItemLink"><?php 
+					echo $userLoggedIn;
+
+				?></span>
 				</div>
 			</div>
 

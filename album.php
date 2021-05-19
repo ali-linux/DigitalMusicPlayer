@@ -58,7 +58,8 @@ $artist = $album->getArtist();
           </div>
 
           <div class='trackOptions'>
-            <img src='assets/images/icons/more-black.png' class='optionsButton'>
+            <input type='hidden' class='songId' value='".$albumSong->getId()."'>
+            <img src='assets/images/icons/more-black.png' class='optionsButton' onclick='showOptionsMenu(this)' style='cursor:pointer;'>
           </div>
 
             <div class='trackDuration'>
@@ -80,7 +81,10 @@ $artist = $album->getArtist();
 </div>
 </div>
 
-
+<nav class="optionsMenu">
+	<input type="hidden" class="songId">
+  <?php echo Playlist::getPlaylistsDropdown($con, $userLoggedIn); ?>
+</nav>
 
 <!-- // $albumQuery = mysqli_query($con, "SELECT * FROM album WHERE id='$albumId'");
 // $album = mysqli_fetch_array($albumQuery);

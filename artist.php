@@ -1,5 +1,10 @@
 <?php 
   include("includes/includedFiles.php");
+  if(isset($_SESSION['userLoggedIn'])){
+    $userLoggedIn = $_SESSION['userLoggedIn'];
+  } else {
+    header('Location registration.php');
+  }
   if(isset($_GET['id'])){
     $artistId =  $_GET['id'];
   } else {
@@ -48,8 +53,9 @@
           </div>
 
           <div class='trackOptions'>
-            <img src='assets/images/icons/more-black.png' class='optionsButton'>
-          </div>
+          <input type='hidden' class='songId' value='".$albumSong->getId()."'>
+          <img src='assets/images/icons/more-black.png' class='optionsButton' onclick='showOptionsMenu(this)' style='cursor:pointer;'>
+        </div>
 
             <div class='trackDuration'>
               <span class='duration'>
@@ -88,3 +94,7 @@
 				?>
 				
 		</div>
+    <nav class="optionsMenu">
+	<input type="hidden" class="songId">
+  <?php echo Playlist::getPlaylistsDropdown($con, $userLoggedIn); ?>
+</nav>
